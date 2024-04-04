@@ -8,13 +8,40 @@
 
 Получите уникальные названия районов из таблицы с адресами, которые начинаются на “K” и заканчиваются на “a” и не содержат пробелов.
 
+### Решение 1
+[address](https://github.com/sash3939/SQL-part1/assets/156709540/d563e2e3-cb5e-4bbd-be57-d63a66bf8ec8)
+
+SELECT DISTINCT district
+FROM sakila.address
+WHERE district LIKE 'K%a' AND 'district' NOT LIKE '% %';
+
+---
+
 ### Задание 2
 
 Получите из таблицы платежей за прокат фильмов информацию по платежам, которые выполнялись в промежуток с 15 июня 2005 года по 18 июня 2005 года **включительно** и стоимость которых превышает 10.00.
 
+### Решение 2
+[payment](https://github.com/sash3939/SQL-part1/assets/156709540/1c51e235-427a-4b9a-b991-cd55d0c212e2)
+
+SELECT *
+FROM sakila.payment
+WHERE payment_date BETWEEN '2005-06-15' AND '2005-06-19' AND amount > 10.00;
+
+---
+
 ### Задание 3
 
 Получите последние пять аренд фильмов.
+
+### Решение 3
+[rental](https://github.com/sash3939/SQL-part1/assets/156709540/1f07b7ec-9320-4902-870c-e6515749b8a2)
+
+SELECT *
+FROM sakila.rental ORDER BY rental_date DESC
+LIMIT 5;
+
+---
 
 ### Задание 4
 
