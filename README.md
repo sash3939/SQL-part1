@@ -22,11 +22,13 @@ WHERE district LIKE 'K%a' AND 'district' NOT LIKE '% %';
 Получите из таблицы платежей за прокат фильмов информацию по платежам, которые выполнялись в промежуток с 15 июня 2005 года по 18 июня 2005 года **включительно** и стоимость которых превышает 10.00.
 
 ### Решение 2
-[payment](https://github.com/sash3939/SQL-part1/assets/156709540/1c51e235-427a-4b9a-b991-cd55d0c212e2)
+[payment](https://github.com/sash3939/SQL-part1/assets/156709540/a0da3977-6a7f-4ceb-b07f-30b02f42e0b9)
+
 
 SELECT *
 FROM sakila.payment
-WHERE payment_date BETWEEN '2005-06-15' AND '2005-06-19' AND amount > 10.00;
+WHERE payment_date BETWEEN '2005-06-15' AND '2005-06-18 23:59:59'
+AND amount > 10.00;
 
 ---
 
