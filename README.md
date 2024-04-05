@@ -51,6 +51,17 @@ LIMIT 5;
 - все буквы в фамилии и имени из верхнего регистра переведите в нижний регистр,
 - замените буквы 'll' в именах на 'pp'.
 
+### Решение 4
+[replace](https://github.com/sash3939/SQL-part1/assets/156709540/19ba57ff-23c5-4f78-ab02-a7e5f32e6035)
+
+SELECT 
+    replace(lower(first_name), 'll', 'pp') AS modified_name
+FROM 
+    sakila.customer
+WHERE 
+    first_name IN ('Kelly', 'Willie');
+
+---    
 ## Дополнительные задания (со звёздочкой*)
 Эти задания дополнительные, то есть не обязательные к выполнению, и никак не повлияют на получение вами зачёта по этому домашнему заданию. Вы можете их выполнить, если хотите глубже шире разобраться в материале.
 
@@ -58,6 +69,30 @@ LIMIT 5;
 
 Выведите Email каждого покупателя, разделив значение Email на две отдельных колонки: в первой колонке должно быть значение, указанное до @, во второй — значение, указанное после @.
 
+### Решение 5*
+[email](https://github.com/sash3939/SQL-part1/assets/156709540/19c3582c-ca77-4422-b9a6-71270aec4ff3)
+
+SELECT 
+    SUBSTRING_INDEX(email, '@', 1) AS name,
+    SUBSTRING_INDEX(email, '@', -1) AS domain
+FROM 
+    sakila.customer
+
+---
+
 ### Задание 6*
 
 Доработайте запрос из предыдущего задания, скорректируйте значения в новых колонках: первая буква должна быть заглавной, остальные — строчными.
+
+### Решение 6*
+[concat](https://github.com/sash3939/SQL-part1/assets/156709540/b6136d2f-a0ac-4669-beb3-3a5c201c563e)
+
+
+SELECT 
+    CONCAT(
+        UPPER(SUBSTRING(SUBSTRING_INDEX(email, '@', 1), 1, 1)),
+        LOWER(SUBSTRING(SUBSTRING_INDEX(email, '@', 1), 2))
+    ) AS username,
+    LOWER(SUBSTRING_INDEX(email, '@', -1)) AS domain
+FROM 
+    sakila.customer
